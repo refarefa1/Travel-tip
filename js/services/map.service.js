@@ -1,8 +1,11 @@
 export const mapService = {
     initMap,
     addMarker,
-    panTo
+    panTo,
+    geocodeLatLng,
+    getWeatherData
 }
+
 
 
 // Var that is used throughout this Module (not global)
@@ -10,13 +13,42 @@ var gMap
 
 function initMap(lat = 32.0749831, lng = 34.9120554) {
     return _connectGoogleApi()
-        .then(() => {
-            gMap = new google.maps.Map(
-                document.querySelector('#map'), {
+    .then(() => {
+        gMap = new google.maps.Map(
+            document.querySelector('#map'), {
                 center: { lat, lng },
                 zoom: 15
             })
+
         })
+}
+
+function geocodeLatLng(geocoder, map, infowindow) {
+    const input = document.getElementById("latlng").value;
+    const latlngStr = input.split(",", 2);
+    const latlng = {
+      lat: parseFloat(latlngStr[0]),
+      lng: parseFloat(latlngStr[1]),
+    };
+    geocoder
+    .geocode({ location: latlng })
+    .then((response) => {
+      if (response.results[0]) {
+        map.setZoom(11);
+
+        const marker = new google.maps.Marker({
+          position: latlng,
+          map: map,
+        });
+
+        infowindow.setContent(response.results[0].formatted_address);
+        console.log('success', response.results[0].formatted_address);
+        infowindow.open(map, marker);
+      } else {
+        window.alert("No results found");
+      }
+    })
+    .catch((e) => window.alert("Geocoder failed due to: " + e));
 }
 
 function addMarker(loc) {

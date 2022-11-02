@@ -9,12 +9,12 @@ window.onGetUserPos = onGetUserPos
 
 function onInit() {
     mapService.initMap()
-        .then(() => {
-            locService.getLocs()
-                .then(renderLocs)
-        })
-        .catch(() =>
-            console.log('Error: cannot init map'))
+    .then(() => {
+        locService.getLocs()
+        .then(renderLocs)
+    })
+    .catch(() =>
+    console.log('Error: cannot init map'))
 }
 
 // This function provides a Promise API to the callback-based-api of getCurrentPosition
@@ -52,6 +52,18 @@ function onGetUserPos() {
 function onPanTo(lat, lng) {
     mapService.panTo(lat, lng)
     mapService.addMarker({ lat, lng })
+    const weatherData = getWeather(lat,lng)
+    weatherData.then(console.log)
+    renderWeather(weatherData)
+}
+
+function renderWeather(weatherData){
+    console.log(weatherData);
+    weatherData.then(obj => {
+        document.querySelector('.degrees').innerHTML = obj.temp
+        
+    })
+
 }
 
 function renderLocs(locs) {
@@ -75,6 +87,7 @@ function onRemoveLoc(loc) {
     console.log('removing location... ', loc);
     locService.removeLoc(loc)
     locService.getLocs().then(renderLocs)
+    mapService.initMap()
 }
 
 
