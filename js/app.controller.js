@@ -10,12 +10,12 @@ window.onGetUserPos = onGetUserPos
 function onInit() {
     onAddUserPos()
     mapService.initMap()
-    .then(() => {
-        locService.getLocs()
-        .then(renderLocs)
-    })
-    .catch(() =>
-    console.log('Error: cannot init map'))
+        .then(() => {
+            locService.getLocs()
+                .then(renderLocs)
+        })
+        .catch(() =>
+            console.log('Error: cannot init map'))
 }
 function onAddUserPos() {
     const pos = getPosition()
@@ -47,19 +47,18 @@ function onGetUserPos() {
 function onPanTo(lat, lng) {
     mapService.panTo(lat, lng)
     mapService.addMarker({ lat, lng })
-    const weatherData = getWeather(lat,lng)
-    weatherData.then(console.log)
+    mapService.getLocName(lat, lng).then(renderLocName)
+    const weatherData = getWeather(lat, lng)
     renderWeather(weatherData)
 }
 
-function renderWeather(weatherData){
+function renderWeather(weatherData) {
     console.log(weatherData);
     weatherData.then(obj => {
         document.querySelector('.degrees').innerHTML = obj.temp
-        
-    })
 
-    mapService.getLocName(lat, lng).then(renderLocName)
+    })
+    
 }
 
 function renderLocs(locs) {
