@@ -14,16 +14,6 @@ export const mapService = {
 var gMap
 
 
-function getAddress(){
-    const weatherUrl = 'https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=Museum%20of%20Contemporary%20Art%20Australia&inputtype=textquery&fields=formatted_address%2Cname%2Crating%2Copening_hours%2Cgeometry&key=AIzaSyCR-AoWkujRNfvJsI67720LaubC_uNXcPY'
-    fetch(weatherUrl)
-    .then(console.log)
-    // return fetch(weatherUrl)
-    // .then(res => res.json())
-    // .then(console.log)
-}
- 
-
 function getMap() {
     return Promise.resolve(gMap)
 }
