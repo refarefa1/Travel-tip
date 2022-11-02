@@ -5,7 +5,8 @@ export const mapService = {
     addMarker,
     panTo,
     getLocName,
-    getMap
+    getMap,
+    searchPlace,
 }
 
 
@@ -13,16 +14,17 @@ export const mapService = {
 // Var that is used throughout this Module (not global)
 var gMap
 
-
-function getAddress(){
-    const weatherUrl = 'https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=Museum%20of%20Contemporary%20Art%20Australia&inputtype=textquery&fields=formatted_address%2Cname%2Crating%2Copening_hours%2Cgeometry&key=AIzaSyCR-AoWkujRNfvJsI67720LaubC_uNXcPY'
-    fetch(weatherUrl)
-    .then(console.log)
-    // return fetch(weatherUrl)
-    // .then(res => res.json())
-    // .then(console.log)
+function searchPlace(place) {
+    const url = `https://maps.googleapis.com/maps/api/geocode/json?address=${place}&key=AIzaSyCR-AoWkujRNfvJsI67720LaubC_uNXcPY`
+    return fetch(url)
+        .then(res => res.json())
+        .then(res => {
+            return {
+                address: res.results[0].formatted_address,
+                coords: res.results[0].geometry.location
+            }
+        })
 }
-    
 
 function getMap() {
     return Promise.resolve(gMap)
@@ -49,6 +51,7 @@ function getLocName(lat, lng) {
 
 
 function addMarker(loc) {
+
     var marker = new google.maps.Marker({
         position: loc,
         map: gMap,

@@ -8,6 +8,7 @@ window.onRemoveLoc = onRemoveLoc
 window.onAddMarker = onAddMarker
 window.onGetUserPos = onGetUserPos
 window.onAddPlace = onAddPlace
+window.onSearchPlace = onSearchPlace
 
 var gLat
 var gLng
@@ -94,23 +95,38 @@ function renderLocName(name) {
     document.querySelector('.current-location').innerText = name
 }
 
+function onSearchPlace(ev) {
+    ev.preventDefault()
+    const place = document.querySelector('.search-input').value
+    const name = mapService.searchPlace(place)
+    name.then(({ address, coords }) => {
+        renderLocName(address)
+        const weatherData = getWeather(coords.lat, coords.lng)
+        renderWeather(weatherData)
+        mapService.panTo(coords.lat, coords.lng)
+        document.querySelector('.search-input').value = ''
+    })
+}
+
 
 function onAddPlace(bool) {
     const prm = new Promise((resolve, reject) => {
         if (!bool) reject('dont add')
-        resolve(locService.addNewLoc('some name', gLat, gLng))
+        resolve(addSuccess)
     })
     prm
-        .then(coords => coords)
-        .catch('error!')
+        .then(addSuccess)
+        .catch(console.log)
     document.querySelector('.modal-form').classList.add('hide')
-    locService.getLocs().then(renderLocs)
-    mapService.getLocName(gLat, gLng).then(renderLocName)
 
 }
 
-function removeModal() {
-    console.log('removing modal...');
+function addSuccess() {
+    locService.addNewLoc('some name', gLat, gLng)
+    locService.getLocs().then(renderLocs)
+    mapService.getLocName(gLat, gLng).then(renderLocName)
+    mapService.panTo(gLat, gLng)
+    mapService.addMarker(({ lat: gLat, lng: gLng }))
 }
 
 function addListeners() {

@@ -7,8 +7,8 @@ export const locService = {
 
 
 const locs = [
-    { name: 'Greatplace', lat: 32.047104, lng: 34.832384 },
-    { name: 'Neveragain', lat: 32.047201, lng: 34.832581 }
+    { name: 'Azrieli', lat: 32.072857, lng: 34.793352 },
+    { name: 'Tel Hashomer', lat: 32.046643, lng: 34.844534 }
 ]
 
 function addUserPos(pos) {
