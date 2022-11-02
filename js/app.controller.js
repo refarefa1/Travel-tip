@@ -47,6 +47,7 @@ function onGetUserPos() {
 function onPanTo(lat, lng) {
     mapService.panTo(lat, lng)
     mapService.addMarker({ lat, lng })
+    mapService.getLocName(lat, lng).then(renderLocName)
     const weatherData = getWeather(lat,lng)
     renderWeather(weatherData)
 }
