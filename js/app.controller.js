@@ -70,9 +70,11 @@ function onPanTo(lat, lng) {
 }
 
 function renderWeather(weatherData) {
+    const date = new Date();
     weatherData.then(obj => {
-        document.querySelector('.degrees').innerHTML = obj.temp
+        document.querySelector('.degrees').innerText = obj.temp
         document.querySelector('.weather-icon').src = `http://openweathermap.org/img/wn/${obj.icon}.png`
+        document.querySelector('.date').innerText = date.getDay() + "/" + (date.getMonth()+1) + '/' + date.getFullYear()
     })
 }
 
