@@ -59,6 +59,7 @@ function getLocName(lat, lng) {
     return locService.getLocs()
         .then(res => {
             var currLoc = res.find(loc => loc.lat === lat && loc.lng === lng)
+            console.log(currLoc);
             return Promise.resolve(currLoc.name)
         })
 }

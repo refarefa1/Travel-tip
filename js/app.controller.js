@@ -131,11 +131,16 @@ function onAddPlace(bool) {
 }
 
 function addSuccess() {
-    locService.addNewLoc('some name', gLat, gLng)
-    locService.getLocs().then(renderLocs)
-    mapService.getLocName(gLat, gLng).then(renderLocName)
-    mapService.panTo(gLat, gLng)
-    mapService.addMarker(({ lat: gLat, lng: gLng }))
+    const newPlace = mapService.getName(gLat, gLng)
+    newPlace
+        .then(({ name }) => {
+            locService.addNewLoc(name, gLat, gLng)
+            locService.getLocs().then(renderLocs)
+            mapService.getLocName(gLat, gLng).then(renderLocName)
+            mapService.panTo(gLat, gLng)
+            mapService.addMarker(({ lat: gLat, lng: gLng }))
+
+        })
 }
 
 function addListeners() {
