@@ -9,6 +9,9 @@ window.onAddMarker = onAddMarker
 window.onGetUserPos = onGetUserPos
 window.onAddPlace = onAddPlace
 
+var gLat
+var gLng
+
 function onInit() {
     onAddUserPos()
     mapService.initMap()
@@ -93,12 +96,16 @@ function renderLocName(name) {
 
 
 function onAddPlace(bool) {
-    if (!bool) {
-        document.querySelector('.modal-form').classList.add('hide')
-        return
-    }
-    // addPlace(ans)
-    console.log(bool);
+    const prm = new Promise((resolve, reject) => {
+        if (!bool) reject('dont add')
+        resolve(locService.addNewLoc('some name', gLat, gLng))
+    })
+    prm
+        .then(coords => coords)
+        .catch('error!')
+    document.querySelector('.modal-form').classList.add('hide')
+    locService.getLocs().then(renderLocs)
+    mapService.getLocName(gLat, gLng).then(renderLocName)
 
 }
 
@@ -113,12 +120,8 @@ function addListeners() {
             const lat = ev.latLng.lat()
             const lng = ev.latLng.lng()
             document.querySelector('.modal-form').classList.remove('hide')
-            const prm = new Promise((resolve, reject) =>{
-                
-            })
-            console.log(lat, lng);
+            gLat = lat
+            gLng = lng
         })
     })
 }
-
-
