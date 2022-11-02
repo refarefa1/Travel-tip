@@ -4,52 +4,28 @@ export const mapService = {
     initMap,
     addMarker,
     panTo,
-    geocodeLatLng,
-    getLocName
+    getLocName,
+    getMap
 }
 
 
 
 // Var that is used throughout this Module (not global)
 var gMap
-var gLocName
+
+function getMap() {
+    return Promise.resolve(gMap)
+}
 
 function initMap(lat = 32.0749831, lng = 34.9120554) {
     return _connectGoogleApi()
-    .then(() => {
-        gMap = new google.maps.Map(
-            document.querySelector('#map'), {
+        .then(() => {
+            gMap = new google.maps.Map(
+                document.querySelector('#map'), {
                 center: { lat, lng },
                 zoom: 15
             })
-            const geocoder = new google.maps.Geocoder()
-            const infowindow = new google.maps.InfoWindow()
-            gLocName = geocodeLatLng(geocoder, gMap, infowindow)
         })
-}
-
-function geocodeLatLng(geocoder, map, infowindow) {
-    const latlng = {
-        lat: parseFloat(map.center.lat()),
-        lng: parseFloat(map.center.lng()),
-    }
-    return geocoder
-        .geocode({ location: latlng })
-        .then((response) => {
-            if (response.results[0]) {
-                map.setZoom(11);
-                const marker = new google.maps.Marker({
-                    position: latlng,
-                    map: map,
-                });
-                infowindow.setContent(response.results[0].formatted_address);
-                infowindow.open(map, marker);
-                return response.results[0].formatted_address
-            } else {
-                window.alert("No results found");
-            }
-        })
-        .catch((e) => window.alert("Geocoder failed due to: " + e));
 }
 
 function getLocName(lat, lng) {

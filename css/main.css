@@ -60,6 +60,10 @@ button {
     width: 100%;
 }
 
+.hide{
+    display: none;
+}
+
 .debug {
     outline: 1px red solid;
 }
@@ -108,6 +112,11 @@ button {
     height: 40px;
     right: 10px;
     top: 100px;
+}
+
+.modal-form{
+    background-color: var(--clr0);
+    width: 40%;
 }
 
 
