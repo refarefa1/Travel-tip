@@ -23,6 +23,11 @@
     src: url(../fonts/yeseva/YesevaOne-Regular.ttf);
 }
 
+@font-face {
+    font-family: fredoka;
+    src: url(../fonts/fredoka/FredokaOne-Regular.ttf);
+}
+
 .degrees::after{
     content: "℃";
 }
@@ -50,4 +55,8 @@
 
 .fa.remove-btn::after{
     content: "\f1f8";
+}
+
+.fa.hint-icon::after{
+    content: "\f0eb";
 }

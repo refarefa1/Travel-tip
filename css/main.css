@@ -72,7 +72,7 @@ button {
 
 .main-header {
     background-color: var(--clr0);
-    height: 8vh;
+    height: 10vh;
 }
 
 .main-container {
@@ -80,11 +80,18 @@ button {
     height: 80vh;
 }
 
+.main-header h1 {
+    font-family: fredoka;
+    font-size: 2em;
+}
+
 /* MAP */
 
 .map-container {
-    flex-basis: 55%;
+    flex-basis: 53%;
     position: relative;
+    border: 3px solid rgb(219, 219, 219);
+    border-radius: 5px;
 }
 
 .search-label {
@@ -93,7 +100,7 @@ button {
 
 .search-input {
     padding-left: 10px;
-    height: 6%;
+    height: 8%;
     background-color: beige;
     border: none;
 }
@@ -129,11 +136,12 @@ button {
 
 .info-container {
     flex-basis: 40%;
+    
 }
 
 .current-location-container {
     padding-left: 5px;
-    flex-basis: 6%;
+    flex-basis: 8%;
     background-color: beige;
     margin-bottom: 20px;
     border-radius: 8px;
@@ -148,7 +156,13 @@ button {
     margin-bottom: 20px;
     padding-left: 5px;
     height: 80px;
-    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.4);
+}
+
+.saved-location {
+    box-shadow: 10px 10px 11px 0px rgba(0, 0, 0, 0.13);
+    -webkit-box-shadow: 10px 10px 11px 0px rgba(0, 0, 0, 0.13);
+    -moz-box-shadow: 10px 10px 11px 0px rgba(0, 0, 0, 0.13);
+    border: 1px solid #e7e7e7;
 }
 
 .current-location-container .copy-btn,
@@ -162,8 +176,9 @@ button {
     border-radius: 15px;
     flex-grow: 1;
     background-color: var(--clr0);
-    font-size: 3rem;
+    font-size: 2rem;
     justify-content: space-around;
+    border: 4px solid rgb(0, 49, 49);
 }
 
 .weather-container h4 {
