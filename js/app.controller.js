@@ -30,18 +30,10 @@ function onAddMarker() {
     mapService.addMarker({ lat: 32.0749831, lng: 34.9120554 })
 }
 
-function onGetLocs() {
-    locService.getLocs()
-        .then(locs => {
-
-        })
-
-}
-
 function onGetUserPos() {
     getPosition()
         .then(({ coords }) => {
-            console.log()
+            console.log(coords)
             onPanTo(coords.latitude, coords.longitude)
         })
         .catch(err => {

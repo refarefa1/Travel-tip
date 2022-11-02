@@ -3,6 +3,30 @@
     src: url(../fonts/fa/fa-solid-900.ttf);
 }
 
+@font-face {
+    font-family: lato-light;
+    src: url(../fonts/lato/Lato-Light.ttf);
+}
+
+@font-face {
+    font-family: lato-regular;
+    src: url(../fonts/lato/Lato-Regular.ttf);
+}
+
+@font-face {
+    font-family: lato-bold;
+    src: url(../fonts/lato/Lato-Bold.ttf);
+}
+
+@font-face {
+    font-family: yeseva;
+    src: url(../fonts/yeseva/YesevaOne-Regular.ttf);
+}
+
+.degrees::after{
+    content: "℃";
+}
+
 .fa{
     font-family: fa;
 }
