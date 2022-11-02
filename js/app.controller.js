@@ -41,8 +41,8 @@ function onGetLocs() {
 function onGetUserPos() {
     getPosition()
         .then(({ coords }) => {
-            console.log(coords)
-            // Map.setCenter(lon, lat, zoom)
+            console.log()
+            onPanTo(coords.latitude, coords.longitude)
         })
         .catch(err => {
             console.log('err!!!', err)
@@ -76,3 +76,5 @@ function onRemoveLoc(loc) {
     locService.removeLoc(loc)
     locService.getLocs().then(renderLocs)
 }
+
+
