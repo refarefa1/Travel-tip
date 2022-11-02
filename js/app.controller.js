@@ -48,18 +48,15 @@ function onPanTo(lat, lng) {
     mapService.panTo(lat, lng)
     mapService.addMarker({ lat, lng })
     const weatherData = getWeather(lat,lng)
-    weatherData.then(console.log)
     renderWeather(weatherData)
 }
 
 function renderWeather(weatherData){
-    console.log(weatherData);
     weatherData.then(obj => {
         document.querySelector('.degrees').innerHTML = obj.temp
+        document.querySelector('.weather-icon').src = `http://openweathermap.org/img/wn/${obj.icon}.png`
         
     })
-
-    mapService.getLocName(lat, lng).then(renderLocName)
 }
 
 function renderLocs(locs) {
