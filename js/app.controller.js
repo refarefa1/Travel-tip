@@ -28,13 +28,15 @@ function onAddUserPos() {
     const pos = getPosition()
     pos
         .then(({ coords }) => {
-            mapService.getName(coords.latitude, coords.longitude)
+            mapService.getName(coords.latitude, coords.longitude)      
                 .then(({ name }) => {
                     locService.setName(name)
                     renderLocName(name)
                     locService.getLocs()
                         .then(renderLocs)
                 })
+  const weatherData = getWeather(coords.latitude, coords.longitude)
+    renderWeather(weatherData)
         })
     locService.addUserPos(pos)
 }

@@ -44,7 +44,10 @@ function getMap() {
     return Promise.resolve(gMap)
 }
 
+
 function initMap(lat = 32.0749831, lng = 34.9120554) {
+    // const weatherData = getWeather(lat, lng)
+    // renderWeather(weatherData)
     return _connectGoogleApi()
         .then(() => {
             gMap = new google.maps.Map(
@@ -52,6 +55,7 @@ function initMap(lat = 32.0749831, lng = 34.9120554) {
                 center: { lat, lng },
                 zoom: 15
             })
+            
         })
 }
 
