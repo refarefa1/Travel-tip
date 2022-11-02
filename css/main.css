@@ -11,7 +11,7 @@
 body {
     margin: 0;
     background-image: linear-gradient(var(--clr2), var(--clr3));
-    height: 100vh
+    height: 110vh
 }
 
 * {
@@ -85,7 +85,7 @@ button {
 
 .main-container {
     margin-top: 40px;
-    height: 75vh;
+    height: 80%;
 }
 
 .main-header h1 {
@@ -106,10 +106,8 @@ button {
 
 .search-label {
     position: relative;
-    height: 10%;
+    height: 80px;
     padding-bottom: 20px;
-    /* margin-bottom: 10px; */
-
 }
 
 .search-input {
@@ -143,7 +141,7 @@ button {
 }
 
 .modal-form {
-    background-color: var(--clr0);
+    background-color: var(--clr1);
     width: 40%;
     height: 100px;
     position: absolute;
@@ -157,7 +155,9 @@ button {
 
 .info-container {
     flex-basis: 40%;
-
+    margin-top: 80px;
+    max-height: 50%;
+    overflow-x: scroll;
 }
 
 .current-location-container {
@@ -216,6 +216,27 @@ button {
 
     .main-container {
         flex-direction: row-reverse;
+        height: 75vh;
     }
+
+    .search-label {
+        height: 10%;
+    }
+
+    .info-container {
+        margin: 0;
+    }
+
+    .info-container {
+        max-height: 100%;
+        overflow-x: auto;
+    }
+
+
+
+
+    /* .search-input {
+        height: 100%;
+    } */
 
 }
