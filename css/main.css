@@ -147,7 +147,7 @@ button {
 .weather-container {
     border-radius: 15px;
     flex-grow: 1;
-    background-color: var(--clr0);
+    background-color: var(--clr1);
     font-size: 3rem;
     justify-content: space-around;
 }
