@@ -1,0 +1,29 @@
+@font-face {
+    font-family: fa;
+    src: url(../fonts/fa/fa-solid-900.ttf);
+}
+
+.fa{
+    font-family: fa;
+}
+
+.fa.search-btn::after{
+    content: "\f002";
+}
+
+.fa.my-location-btn::after{
+    content: "\f601";
+    font-size: 2em;
+}
+
+.fa.copy-btn::after{
+    content: "\f0c5";
+}
+
+.fa.go-btn::after{
+    content: "\f3c5";
+}
+
+.fa.remove-btn::after{
+    content: "\f1f8";
+}

@@ -1,0 +1,158 @@
+@import url(./fonts.css);
+
+:root {
+    --clr0: darkcyan;
+    --clr1: white;
+}
+
+body {
+    margin: 0;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+}
+
+.main-layout>*:not(.full) {
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+button {
+    border: none;
+}
+
+
+/* HELPERS */
+
+.flex {
+    display: flex;
+}
+
+.column {
+    flex-direction: column;
+}
+
+.align-center {
+    align-items: center;
+}
+
+.justify-center {
+    justify-content: center;
+}
+
+.space-between {
+    justify-content: space-between;
+}
+
+.full {
+    width: 100%;
+}
+
+.debug {
+    outline: 1px red solid;
+}
+
+/* COMPONENTS */
+
+.main-header {
+    background-color: var(--clr0);
+    height: 8vh;
+}
+
+.main-container {
+    margin-top: 40px;
+    height: 80vh;
+}
+
+/* MAP */
+
+.map-container {
+    flex-basis: 55%;
+    position: relative;
+}
+
+.search-label {
+    position: relative;
+}
+
+.search-input {
+    padding-left: 10px;
+    height: 6%;
+    background-color: beige;
+    border: none;
+}
+
+.search-btn {
+    position: absolute;
+    top: 2px;
+    right: 10px;
+    background-color: transparent;
+}
+
+.my-location-btn {
+    background-color: white;
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    right: 10px;
+    top: 100px;
+}
+
+
+/* INFO */
+
+.info-container {
+    flex-basis: 40%;
+}
+
+.current-location-container {
+    padding-left: 5px;
+    flex-basis: 6%;
+    background-color: beige;
+}
+
+.saved-locations {
+    flex-basis: 65%;
+}
+
+.saved-locations .saved-location {
+    padding-left: 5px;
+    height: 80px;
+    outline: 1px black solid;
+}
+
+.current-location-container .copy-btn,
+.location-btns>* {
+    background-color: transparent;
+    padding-right: 10px;
+    font-size: 1.2em;
+}
+
+.weather-container {
+    flex-grow: 1;
+    background-color: antiquewhite;
+}
+
+.weather-container h4 {
+    padding-left: 5px;
+}
+
+.weather-container>* {
+    margin-inline-end: 20px;
+}
+
+.weather-container img {
+    width: 50px;
+    height: 50px;
+}
+
+@media (min-width:600px) {
+
+    .main-container {
+        flex-direction: row-reverse;
+    }
+
+}

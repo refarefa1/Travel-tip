@@ -1,24 +1,83 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TravelTip</title>
+    <link rel="stylesheet" href="css/main.css">
 </head>
-<body>
-    <h1>TravelTip Starter</h1>
-    <div id="map" style="width: 100%; height: 400px;"></div>
-    <button onclick="onAddMarker()" class="btn-add-marker">Add Marker Speific Location</button>
-    <button onclick="onGetUserPos()" class="btn-user-pos">Get User Position</button>
-    <button onclick="onGetLocs()" class="btn-get-locs">Get Locations</button>
-    <button onclick="onPanTo()"class="btn-pan">Pan Map to Tokyo</button>
 
-    <p>You are at: <span class="user-pos"></span></p>
-    <p>Locations: 
-        <pre class="locs"></pre>
-    </p>
-    
+<body class="main-layout">
 
+    <header class="main-header full main-layout flex align-center">
+        <nav class="main-nav">
+            <h1 class="logo">Logo</h1>
+        </nav>
+    </header>
+
+    <main class="main-container flex column space-between">
+
+        <section class="map-container">
+
+            <label class="search-label">
+                <input class="search-input full" type="text" placeholder="Search location...">
+                <button class="fa search-btn"></button>
+            </label>
+
+            <div id="map" style="width: 100%; height: 94%;"></div>
+            <button onclick="onGetUserPos()" class="fa my-location-btn"></button>
+
+        </section>
+
+        <section class="info-container flex column">
+
+            <section class="current-location-container flex space-between align-center">
+                <h2>Current location</h2>
+                <button class="fa copy-btn"></button>
+            </section>
+
+            <section class="saved-locations flex column">
+
+                <article class="saved-location flex align-center space-between">
+                    <h3>Location name</h3>
+                    <section class="location-btns">
+                        <button class="fa go-btn"></button>
+                        <button class="fa remove-btn"></button>
+                    </section>
+                </article>
+
+                <article class="saved-location flex align-center space-between">
+                    <h3>Location name</h3>
+                    <section class="location-btns">
+                        <button class="fa go-btn"></button>
+                        <button class="fa remove-btn"></button>
+                    </section>
+                </article>
+
+                <article class="saved-location flex align-center space-between">
+                    <h3>Location name</h3>
+                    <section class="location-btns">
+                        <button class="fa go-btn"></button>
+                        <button class="fa remove-btn"></button>
+                    </section>
+                </article>
+
+            </section>
+
+            <section class="weather-container flex align-center">
+                <h4>24 Degrees</h4>
+                <img src="img/sun.png" alt="">
+                <h5>Date</h5>
+            </section>
+
+        </section>
+    </main>
+
+
+    <script src="js/services/storage.service.js"></script>
+    <script src="js/services/weather.service.js"></script>
     <script type="module" src="js/app.controller.js"></script>
 </body>
+
 </html>
