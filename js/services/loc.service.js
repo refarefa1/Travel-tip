@@ -2,7 +2,8 @@ export const locService = {
     getLocs,
     removeLoc,
     addUserPos,
-    addNewLoc
+    addNewLoc,
+    setName
 }
 
 
@@ -10,6 +11,10 @@ const locs = [
     { name: 'Azrieli', lat: 32.072857, lng: 34.793352 },
     { name: 'Tel Hashomer', lat: 32.046643, lng: 34.844534 }
 ]
+
+function setName(name) {
+    locs[0].name = name
+}
 
 function addUserPos(pos) {
     pos.then(({ coords }) => {

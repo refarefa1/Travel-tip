@@ -7,12 +7,26 @@ export const mapService = {
     getLocName,
     getMap,
     searchPlace,
+    getName,
 }
 
 
 
 // Var that is used throughout this Module (not global)
 var gMap
+
+
+
+function getName(lat, lng) {
+    const url = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lng}&key=AIzaSyCR-AoWkujRNfvJsI67720LaubC_uNXcPY`
+    return fetch(url)
+        .then(res => res.json())
+        .then(res => {
+            return {
+                name: res.results[0].formatted_address
+            }
+        })
+}
 
 function searchPlace(place) {
     const url = `https://maps.googleapis.com/maps/api/geocode/json?address=${place}&key=AIzaSyCR-AoWkujRNfvJsI67720LaubC_uNXcPY`
