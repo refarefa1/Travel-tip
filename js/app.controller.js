@@ -26,6 +26,16 @@ function onInit() {
 }
 function onAddUserPos() {
     const pos = getPosition()
+    pos
+        .then(({ coords }) => {
+            mapService.getName(coords.latitude, coords.longitude)
+                .then(({ name }) => {
+                    locService.setName(name)
+                    renderLocName(name)
+                    locService.getLocs()
+                        .then(renderLocs)
+                })
+        })
     locService.addUserPos(pos)
 }
 
