@@ -21,7 +21,7 @@ function getAddress(){
     .then(res => res.json())
     .then(console.log)
 }
-    
+ 
 
 function getMap() {
     return Promise.resolve(gMap)
