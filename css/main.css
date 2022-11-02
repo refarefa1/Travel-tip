@@ -20,6 +20,14 @@ body {
     margin-right: auto;
 }
 
+h2 {
+    font-family: yeseva;
+}
+
+h3 {
+    font-family: lato-bold;
+}
+
 button {
     border: none;
     cursor: pointer;
@@ -113,6 +121,8 @@ button {
     padding-left: 5px;
     flex-basis: 6%;
     background-color: beige;
+    margin-bottom: 20px;
+    border-radius: 8px;
 }
 
 .saved-locations {
@@ -120,9 +130,11 @@ button {
 }
 
 .saved-locations .saved-location {
+    border-radius: 10px;
+    margin-bottom: 20px;
     padding-left: 5px;
     height: 80px;
-    outline: 1px black solid;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.4);
 }
 
 .current-location-container .copy-btn,
@@ -133,6 +145,7 @@ button {
 }
 
 .weather-container {
+    border-radius: 15px;
     flex-grow: 1;
     background-color: antiquewhite;
 }
