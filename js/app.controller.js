@@ -7,6 +7,10 @@ window.onPanTo = onPanTo
 window.onRemoveLoc = onRemoveLoc
 window.onAddMarker = onAddMarker
 window.onGetUserPos = onGetUserPos
+window.onAddPlace = onAddPlace
+
+var gLat
+var gLng
 
 function onInit() {
     onAddUserPos()
@@ -90,20 +94,34 @@ function renderLocName(name) {
     document.querySelector('.current-location').innerText = name
 }
 
-function onMapClick() {
 
+function onAddPlace(bool) {
+    const prm = new Promise((resolve, reject) => {
+        if (!bool) reject('dont add')
+        resolve(locService.addNewLoc('some name', gLat, gLng))
+    })
+    prm
+        .then(coords => coords)
+        .catch('error!')
+    document.querySelector('.modal-form').classList.add('hide')
+    locService.getLocs().then(renderLocs)
+    mapService.getLocName(gLat, gLng).then(renderLocName)
 
+}
+
+function removeModal() {
+    console.log('removing modal...');
 }
 
 function addListeners() {
     let map = mapService.getMap()
     map.then((map) => {
         map.addListener('click', ev => {
-            console.log('ev', ev);
             const lat = ev.latLng.lat()
             const lng = ev.latLng.lng()
-            console.log(lat, lng);
-        })})
+            document.querySelector('.modal-form').classList.remove('hide')
+            gLat = lat
+            gLng = lng
+        })
+    })
 }
-
-
