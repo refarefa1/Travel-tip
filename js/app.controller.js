@@ -10,12 +10,13 @@ window.onGetUserPos = onGetUserPos
 function onInit() {
     onAddUserPos()
     mapService.initMap()
-    .then(() => {
-        locService.getLocs()
-        .then(renderLocs)
-    })
-    .catch(() =>
-    console.log('Error: cannot init map'))
+        .then(() => {
+            addListeners()
+            locService.getLocs()
+                .then(renderLocs)
+        })
+        .catch(() =>
+            console.log('Error: cannot init map'))
 }
 function onAddUserPos() {
     const pos = getPosition()
@@ -48,15 +49,15 @@ function onPanTo(lat, lng) {
     mapService.panTo(lat, lng)
     mapService.addMarker({ lat, lng })
     mapService.getLocName(lat, lng).then(renderLocName)
-    const weatherData = getWeather(lat,lng)
+    const weatherData = getWeather(lat, lng)
     renderWeather(weatherData)
 }
 
-function renderWeather(weatherData){
+function renderWeather(weatherData) {
     weatherData.then(obj => {
         document.querySelector('.degrees').innerHTML = obj.temp
         document.querySelector('.weather-icon').src = `http://openweathermap.org/img/wn/${obj.icon}.png`
-        
+
     })
 }
 
@@ -86,6 +87,22 @@ function onRemoveLoc(loc) {
 
 function renderLocName(name) {
     document.querySelector('.current-location').innerText = name
+}
+
+function onMapClick() {
+
+
+}
+
+function addListeners() {
+    let map = mapService.getMap()
+    map.then((map) => {
+        map.addListener('click', ev => {
+            console.log('ev', ev);
+            const lat = ev.latLng.lat()
+            const lng = ev.latLng.lng()
+            console.log(lat, lng);
+        })})
 }
 
 
