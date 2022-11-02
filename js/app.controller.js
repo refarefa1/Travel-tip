@@ -63,7 +63,6 @@ function renderWeather(weatherData) {
     weatherData.then(obj => {
         document.querySelector('.degrees').innerHTML = obj.temp
         document.querySelector('.weather-icon').src = `http://openweathermap.org/img/wn/${obj.icon}.png`
-
     })
 }
 
