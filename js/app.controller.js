@@ -8,6 +8,7 @@ window.onAddMarker = onAddMarker
 window.onGetUserPos = onGetUserPos
 
 function onInit() {
+    onAddUserPos()
     mapService.initMap()
         .then(() => {
             locService.getLocs()
@@ -16,10 +17,13 @@ function onInit() {
         .catch(() =>
             console.log('Error: cannot init map'))
 }
+function onAddUserPos() {
+    const pos = getPosition()
+    locService.addUserPos(pos)
+}
 
 // This function provides a Promise API to the callback-based-api of getCurrentPosition
 function getPosition() {
-    // console.log('Getting Pos')
     return new Promise((resolve, reject) => {
         navigator.geolocation.getCurrentPosition(resolve, reject)
     })
@@ -33,7 +37,6 @@ function onAddMarker() {
 function onGetUserPos() {
     getPosition()
         .then(({ coords }) => {
-            console.log(coords)
             onPanTo(coords.latitude, coords.longitude)
         })
         .catch(err => {
@@ -44,6 +47,7 @@ function onGetUserPos() {
 function onPanTo(lat, lng) {
     mapService.panTo(lat, lng)
     mapService.addMarker({ lat, lng })
+    mapService.getLocName(lat, lng).then(renderLocName)
 }
 
 function renderLocs(locs) {
@@ -67,6 +71,10 @@ function onRemoveLoc(loc) {
     console.log('removing location... ', loc);
     locService.removeLoc(loc)
     locService.getLocs().then(renderLocs)
+}
+
+function renderLocName(name) {
+    document.querySelector('.current-location').innerText = name
 }
 
 
